@@ -21,7 +21,7 @@
 // Result text
 
 randomNumber = Math.random()
-console.log(randomNumber)
+
 computerChoice = undefined
 
 function getComputerChoice() {
@@ -34,15 +34,17 @@ function getComputerChoice() {
     }
 }
 
-getComputerChoice()
-console.log(computerChoice)
+let playerChoice = undefined
 
 // Player Input
-
-playerChoice = prompt("Enter 'Rock', 'Paper' or 'Scissors'")
-playerChoice = playerChoice.toUpperCase()
-console.log(playerChoice)
-result = undefined
+function playerInput() {
+    playerChoice = prompt("Enter 'Rock', 'Paper' or 'Scissors'")
+    playerChoice = playerChoice.toUpperCase()
+}
+var result = undefined
+let compareCom = 0;
+let comparePla = 0;
+let compareTie = 0;
 
 // Player input vs Computer
 // Use switch statement to determine winner
@@ -53,25 +55,26 @@ function compareChoices(computerChoice, playerChoice) {
         case "SCISSORSPAPER":
         case "PAPERROCK":
         result = "computerWin";
+        compareCom += 1;
         break;
 
         case "SCISSORSROCK":
         case "PAPERSCISSORS":
         case "ROCKPAPER":
         result = 'playerWin';
+        comparePla += 1;
         break;
 
         case "SCISSORSSCISSORS":
         case "PAPERPAPER":
         case "ROCKROCK":
         result = 'tie';
+        compareTie += 1;
         break;
     }   
 
 
 }
-compareChoices(computerChoice, playerChoice)
-console.log(result)
 
 //Make a function to turn result into an output
 
@@ -82,9 +85,90 @@ function resultConverter(result){
     else if(result == "playerWin") {
         console.log("Congrats, you won!")
     }
-    else {
+    else if (result == "tie") {
         console.log("Oops, that's a tie!")
     }
 }
 
-resultConverter(result)
+function play() {
+    getComputerChoice();
+//    playerInput();
+
+    compareChoices(computerChoice, playerChoice);
+//    resultConverter(result);
+
+
+}
+
+// Make game() play 5 times
+// Keep score and report overall winner at the end
+//
+// Use increasing variables to keep score
+
+// function game() {
+//     for(let i = 0; i < 5; i ++){
+//         play()}
+//     if(compareCom > comparePla) {
+//         console.log("The computer wins!")
+//     } else if (comparePla > compareCom) {
+//         console.log("The player wins! Congrats!")
+//     }
+//     else {
+//         console.log("Oops! Looks like you tied overall!")
+//     }
+//    console.log("The final score was... Computer: " + compareCom + ". Player: " + comparePla + ".")
+// }
+
+// game()
+
+let output = document.querySelector('span')
+let rock = document.getElementById('rock')
+let paper = document.getElementById('paper')
+let scissors = document.getElementById('scissors')
+
+
+function rockOutput() {
+    playerChoice = "ROCK"
+    play()
+    if (result == "computerWin") {
+        output.textContent = "Sorry... You lost!"
+    }
+    else if (result == "playerWin") {
+        output.textContent = "Congrats, you won!"
+    }
+    else if (result == "tie") {
+        output.textContent = "Whoops, that's a tie!"
+    }
+}
+
+function paperOutput() {
+    playerChoice = "PAPER"
+    play()
+    if (result == "computerWin") {
+        output.textContent = "Sorry... You lost!"
+    }
+    else if (result == "playerWin") {
+        output.textContent = "Congrats, you won!"
+    }
+    else if (result == "tie") {
+        output.textContent = "Whoops, that's a tie!"
+    }
+}
+
+function scissorsOutput() {
+    playerChoice = "SCISSORS"
+    play()
+    if (result == "computerWin") {
+        output.textContent = "Sorry... You lost!"
+    }
+    else if (result == "playerWin") {
+        output.textContent = "Congrats, you won!"
+    }
+    else if (result == "tie") {
+        output.textContent = "Whoops, that's a tie!"
+    }
+}
+
+rock.addEventListener("click", rockOutput)
+paper.addEventListener("click", paperOutput)
+scissors.addEventListener("click", scissorsOutput)

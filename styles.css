@@ -1,0 +1,36 @@
+* {
+    margin:0;
+    padding:0;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(images/empty-table-perspective-wood-over-blurred-store-bokeh-bac-background-product-display-montage-background-banner-97097047.jpeg);
+}
+
+.container {
+    height: 800px;
+    display:flex;
+    justify-content: center;
+    flex-flow: wrap;
+    gap: 200px;
+}
+
+.output {
+    width: 100%;
+    font-size: 52px;
+    text-align: center;
+}
+
+button {
+    height: 100px;
+    width: 250px;
+    font-size: 32px;
+    border-radius: 8px;
+}
+
+button:active {
+    background-color: rgb(209, 209, 186);
+    transition: .03s;
+}
